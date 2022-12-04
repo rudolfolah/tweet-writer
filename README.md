@@ -4,6 +4,10 @@ Given an article or some paragraphs, this program will write a list of tweets fo
 
 Requires an OpenAI API key: https://beta.openai.com/account/api-keys
 
+Copyright (C) 2022 Rudolf Olah <rudolf.olah.to@gmail.com>
+
+Licensed under the MIT license: [LICENSE](./LICENSE)
+
 ## Usage
 
 Set up your `.env` file:
@@ -23,3 +27,5 @@ npm start
 The web pages use EJS (Embedded JS) templates. The layout has a header and footer.
 
 The styling is done with Tailwind CSS. The base style is in "views/_header.ejs" in a `<style>` tag.
+
+![Screenshot of Tweet Writer](./preview.png)
