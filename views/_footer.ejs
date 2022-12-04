@@ -1,2 +1,35 @@
-    </body>
+<script>
+    function twUseSampleContent() {
+        console.log("Use Sample Content");
+        document.getElementById("content").textContent = "Hello world";
+    }
+    function twGenerate() {
+        console.log("Generating...");
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", function() {
+              for (let child of document.getElementById("results").children) {
+                child.remove();
+              }
+            console.log("Response: ", this.responseText);
+            if (this.status === 500) {
+              document.getElementById("results").innerHTML = "<p>Error: " + this.responseText + "</p>";
+              return;
+            }
+            var data = JSON.parse(this.responseText).results;
+            var results = document.getElementById("results");
+            for (let i = 0; i < data.length; i++) {
+                var element = document.createElement("div");
+                element.className = "my-1 p-3 bg-white";
+                element.innerHTML = "<p class=\"text-xs font-bold\">Twitter User</p><p class=\"text-xs\">Full User Name</p><p class=\"my-2\">" + data[i] + "</p> <p class=\"text-sm\">Select and copy the tweet</p>";
+                results.appendChild(element);
+            }
+        });
+        xhr.open("POST", "http://localhost:3000/generate", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify({ "data": document.getElementById("content").value }));
+    }
+    document.getElementById("use-sample-content").addEventListener("click", twUseSampleContent);
+    document.getElementById("generate").addEventListener("click", twGenerate);
+</script>
+</body>
 </html>

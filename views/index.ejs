@@ -2,12 +2,20 @@
 <div class="flex place-content-center mt-12 bg-white m-20 p-10">
     <div>
         <h1 class="text-2xl">Tweet Writer</h1>
+        <button id="use-sample-content" class="bg-gray-200 p-2 text-sm">Use Sample Content</button>
         <p>Enter your article or content:</p>
-        <textarea class="border-solid border-2 border-emerald-500"></textarea>
+        <textarea id="content" class="border-solid border-2 border-emerald-500"></textarea>
         <p>Click "Generate" and you will receive a list of tweets generated based on the above content</p>
-        <button class="bg-gray-100 p-3">Generate</button>
+        <button id="generate" class="bg-gray-100 p-3">Generate</button>
         <h1 class="text-2xl">Tweets</h1>
-        <div id="results"></div>
+        <div id="results" class="bg-blue-500 p-5">
+            <div class="my-1 p-3 bg-white">
+                <p class="text-xs font-bold">Twitter User</p>
+                <p class="text-xs">Full User Name</p>
+                <p class="my-2">Example tweet</p>
+                <p class="text-sm">Select and copy the tweet</p>
+            </div>
+        </div>
     </div>
 </div>
 
