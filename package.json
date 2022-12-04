@@ -1,0 +1,18 @@
+{
+  "name": "tweet-writer",
+  "version": "1.0.0",
+  "description": "Given an article or some paragraphs, this program will write a list of tweets for you.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rudolf Olah <rolah@modernlearner.org>",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "openai": "^3.1.0"
+  }
+}
