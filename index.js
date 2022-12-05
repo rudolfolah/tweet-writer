@@ -7,6 +7,11 @@ const openaiConfig = new Configuration({
 });
 const openai = new OpenAIApi(openaiConfig);
 
+/**
+ * Removes all HTML tags from the input string.
+ * @param input
+ * @returns {string|*}
+ */
 function sanitizeInput(input) {
   return sanitizeHtml(input, {
     allowedTags: [],
@@ -14,6 +19,13 @@ function sanitizeInput(input) {
   });
 }
 
+/**
+ * Returns generated text from OpenAI API based on the completion prompt and input.
+ * The returned string is sanitized to remove HTML tags.
+ * @param prompt
+ * @param input
+ * @returns {Promise<string|*>}
+ */
 async function createCompletionTweet(prompt, input) {
   const apiRes = await openai.createCompletion({
     model: "text-davinci-003",
@@ -25,9 +37,13 @@ async function createCompletionTweet(prompt, input) {
 }
 
 const app = express();
+
+// App configuration
 app.use(express.json());
 app.set("views", "./views");
 app.set("view engine", "ejs");
+
+// App view functions
 app.get("/", (req, res) => {
   res.render("index");
 });
@@ -53,6 +69,8 @@ app.post("/generate", async (req, res) => {
   console.log("sending response", results);
   res.send({ results });
 });
+
+// Start the app
 const port = process.env.SERVER_PORT || 3000;
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
