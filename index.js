@@ -1,4 +1,5 @@
 require("dotenv").config();
+const config = require("./config");
 const express = require("express");
 const sanitizeHtml = require("sanitize-html");
 const { Configuration, OpenAIApi } = require("openai");
@@ -28,10 +29,10 @@ function sanitizeInput(input) {
  */
 async function createCompletionTweet(prompt, input) {
   const apiRes = await openai.createCompletion({
-    model: "text-davinci-003",
+    model: config.completionModel,
     prompt: prompt + " \"" + input + "\"\n",
-    max_tokens: 256,
-    temperature: 0.7,
+    max_tokens: config.completionMaxTokens,
+    temperature: config.completionTemperature,
   });
   return sanitizeInput(apiRes.data.choices[0].text);
 }
@@ -55,11 +56,10 @@ app.post("/generate", async (req, res) => {
   console.log(prompts);
   let results = [];
   try {
-    for (let i = 0; i < prompts.length; i++) {
-      results.push(await createCompletionTweet("Write a business tweet about", prompts[i]));
-      results.push(await createCompletionTweet("Compose a serious tweet about", prompts[i]));
-      results.push(await createCompletionTweet("Write a funny tweet about", prompts[i]));
-      results.push(await createCompletionTweet("Compose a funny tweet about", prompts[i]));
+    for (let prompt of prompts) {
+      for (let completion of config.completionPrompts) {
+        results.push(await createCompletionTweet(completion, prompt));
+      }
     }
   } catch (e) {
     console.error("error from the api");
