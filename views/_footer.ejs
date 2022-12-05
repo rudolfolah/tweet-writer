@@ -1,8 +1,4 @@
 <script>
-    function twUseSampleContent() {
-        console.log("Use Sample Content");
-        document.getElementById("content").textContent = "Hello world";
-    }
     function twGenerate() {
         console.log("Generating...");
         var xhr = new XMLHttpRequest();
@@ -28,7 +24,6 @@
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(JSON.stringify({ "data": document.getElementById("content").value }));
     }
-    document.getElementById("use-sample-content").addEventListener("click", twUseSampleContent);
     document.getElementById("generate").addEventListener("click", twGenerate);
 </script>
 </body>
