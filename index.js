@@ -50,8 +50,8 @@ app.get("/", (req, res) => {
 app.post("/generate", async (req, res) => {
   let apiRes;
   console.log(req.body);
-  const prompt = sanitizeInput(req.body.data);
-  const prompts = prompt.split("\n").filter((p) => p.length > 0).map((p) => p.trim());
+  const input = sanitizeInput(req.body.data);
+  const prompts = input.split("\n").filter((p) => p.length > 0).map((p) => p.trim());
   console.log(prompts);
   let results = [];
   try {
