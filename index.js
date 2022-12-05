@@ -40,10 +40,10 @@ app.post("/generate", async (req, res) => {
   let results = [];
   try {
     for (let i = 0; i < prompts.length; i++) {
-      results.push(await createCompletionTweet("Write a business tweet about", prompts[1]));
-      results.push(await createCompletionTweet("Compose a serious tweet about", prompts[1]));
-      results.push(await createCompletionTweet("Write a funny tweet about", prompts[1]));
-      results.push(await createCompletionTweet("Compose a funny tweet about", prompts[1]));
+      results.push(await createCompletionTweet("Write a business tweet about", prompts[i]));
+      results.push(await createCompletionTweet("Compose a serious tweet about", prompts[i]));
+      results.push(await createCompletionTweet("Write a funny tweet about", prompts[i]));
+      results.push(await createCompletionTweet("Compose a funny tweet about", prompts[i]));
     }
   } catch (e) {
     console.error("error from the api");
