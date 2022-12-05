@@ -2,10 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const sanitizeHtml = require("sanitize-html");
 const { Configuration, OpenAIApi } = require("openai");
-const config = new Configuration({
+const openaiConfig = new Configuration({
   apiKey: process.env.OPEN_AI_API_KEY,
 });
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(openaiConfig);
 
 function sanitizeInput(input) {
   return sanitizeHtml(input, {
