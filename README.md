@@ -4,6 +4,8 @@ Given an article or some paragraphs, this program will write a list of tweets fo
 
 Requires an OpenAI API key: https://beta.openai.com/account/api-keys
 
+![Logo of Tweet Writer](./logo.png)
+
 Copyright (C) 2022 Rudolf Olah <rudolf.olah.to@gmail.com>
 
 Licensed under the MIT license: [LICENSE](./LICENSE)
