@@ -37,6 +37,21 @@ async function createCompletionTweet(prompt, input) {
   return sanitizeInput(apiRes.data.choices[0].text);
 }
 
+/**
+ * Returns a rewritten version of the input string.
+ * @param input
+ * @returns {Promise<string[]|*>}
+ */
+async function createRewriteTweets(input) {
+  const apiRes = await openai.createCompletion({
+    model: config.completionModel,
+    prompt: config.completionRewritePrompt + " \"" + input + "\"\n",
+    max_tokens: config.completionMaxTokens,
+    temperature: config.completionTemperature,
+  });
+  return sanitizeInput(apiRes.data.choices[0].text).split("\n").filter((p) => p.length > 0).map((s) => s.slice(2));
+}
+
 const app = express();
 
 // App configuration
