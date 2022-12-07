@@ -82,6 +82,14 @@ app.post("/generate", async (req, res) => {
     res.status(500).send({ error: e.message });
     return;
   }
+
+  if (includeRewrites && results.length > 0) {
+    const rewrites = await createRewriteTweets(results[0]);
+    for (let rewrite of rewrites) {
+      results.push(rewrite);
+    }
+  }
+
   console.log("sending response", results);
   res.send({ results });
 });
