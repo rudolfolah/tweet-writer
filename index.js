@@ -66,6 +66,7 @@ app.get("/", (req, res) => {
 app.post("/generate", async (req, res) => {
   let apiRes;
   console.log(req.body);
+  const includeRewrites = req.body.includeRewrites;
   const input = sanitizeInput(req.body.data);
   const prompts = input.split("\n").filter((p) => p.length > 0).map((p) => p.trim());
   console.log(prompts);

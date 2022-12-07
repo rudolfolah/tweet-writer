@@ -5,7 +5,13 @@
         <p>Enter your article or content:</p>
         <textarea id="content" class="border-solid border-2 border-emerald-500"></textarea>
         <p>Click "Generate" and you will receive a list of tweets generated based on the above content</p>
-        <button id="generate" class="bg-gray-100 p-3">Generate</button>
+        <div class="my-5">
+            <button id="generate" class="bg-gradient-to-br from-teal-100 to-green-200 p-3 hover:from-teal-300 hover:to-green-300 border border-slate-200 rounded">
+                Generate
+            </button>
+            <input id="includeRewrites" type="checkbox" class="form-checkbox ml-2 h-3 w-3 text-green-600">
+            <label for="includeRewrites" class="ml-1 text-sm text-gray-900">Include Rewrites</label>
+        </div>
         <h1 class="text-2xl">Tweets</h1>
         <div id="results" class="bg-blue-500 p-5">
             <div class="my-1 p-3 bg-white">
