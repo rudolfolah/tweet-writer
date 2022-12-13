@@ -4,7 +4,7 @@
   "description": "Given an article or some paragraphs, this program will write a list of tweets for you.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cd webui; npm run build; cd ..; node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rudolf Olah <rolah@modernlearner.org>",
