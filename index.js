@@ -56,6 +56,7 @@ const app = express();
 
 // App configuration
 app.use(express.json());
+app.use(express.static("webui/build"));
 app.set("views", "./views");
 app.set("view engine", "ejs");
 
