@@ -14,7 +14,7 @@
             for (let i = 0; i < data.length; i++) {
                 var element = document.createElement("div");
                 element.className = "my-1 p-3 bg-white";
-                element.innerHTML = "<p class=\"text-xs font-bold\">Twitter User</p><p class=\"text-xs\">Full User Name</p><p class=\"my-2\">" + data[i] + "</p> <p class=\"text-sm\">Select and copy the tweet</p>";
+                element.innerHTML = "<p class=\"text-xs font-bold\">Twitter User</p><p class=\"text-xs\">Full User Name</p><p class=\"my-2\">" + data[i] + "</p> <button class=\"text-xs bg-gradient-to-br from-purple-100 to-red-200 p-1 mt-2 hover:from-purple-300 hover:to-red-300 border border-slate-200 rounded\">Click to Copy</button>";
                 results.appendChild(element);
             }
         });
