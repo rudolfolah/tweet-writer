@@ -3,9 +3,7 @@
         console.log("Generating...");
         var xhr = new XMLHttpRequest();
         xhr.addEventListener("load", function() {
-              for (let child of document.getElementById("results").children) {
-                child.remove();
-              }
+            document.getElementById("results").innerHTML = "";
             console.log("Response: ", this.responseText);
             if (this.status === 500) {
               document.getElementById("results").innerHTML = "<p>Error: " + this.responseText + "</p>";
