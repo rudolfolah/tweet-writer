@@ -4,7 +4,7 @@ import {Typography, Col, Row, Avatar} from '@douyinfe/semi-ui';
 export function GeneratedResults({ results }) {
   const { Title, Text, Paragraph } = Typography;
   const items = (results === undefined || results.length === 0) ? [
-    { text: "Example tweet" },
+    "Example tweet",
   ] : results;
 
   return (
@@ -16,7 +16,7 @@ export function GeneratedResults({ results }) {
             <Avatar>TW</Avatar>
             <Paragraph>Twitter User</Paragraph>
             <Paragraph>Full User Name</Paragraph>
-            <Paragraph copyable={true}>{item.text}</Paragraph>
+            <Paragraph copyable={true}>{item}</Paragraph>
           </Row>
         ))}
       </div>
