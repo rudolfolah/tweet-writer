@@ -1,3 +1,4 @@
+import React from "react";
 import {Typography, Col, Row, Avatar} from '@douyinfe/semi-ui';
 
 export function GeneratedResults({ results }) {

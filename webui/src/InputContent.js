@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Typography, Button, Switch, TextArea } from '@douyinfe/semi-ui';
 
 export function InputContent({ loading, onClickGenerateTweets }) {

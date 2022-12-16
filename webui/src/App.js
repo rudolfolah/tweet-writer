@@ -1,5 +1,8 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Layout, Nav, Typography, Col, Row, BackTop, Spin } from '@douyinfe/semi-ui';
+import { InputContent } from "./InputContent";
+import { GeneratedResults } from "./GeneratedResults";
+import axios from "axios";
 
 function App() {
   return (
