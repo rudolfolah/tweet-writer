@@ -26,8 +26,10 @@ npm start
 
 ## Development
 
-The web pages use EJS (Embedded JS) templates. The layout has a header and footer.
+The web pages use React with the Semi UI framework.
 
-The styling is done with Tailwind CSS. The base style is in "views/_header.ejs" in a `<style>` tag.
+To update the web user interface, go to `webui`. To run the web user interface in a development web server, use `npm run start`
+
+To update the server code, check out `index.js`
 
 ![Screenshot of Tweet Writer](./preview.png)

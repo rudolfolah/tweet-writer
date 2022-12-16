@@ -1,6 +1,7 @@
 module.exports = {
   completionPrompts: [
     "Write a tweet for a consulting business audience about",
+    "Write a tweet that enthusastically promotes",
     "A tweet that simplifies the concepts of",
     "Write a business tweet about",
     "Compose a serious tweet about",
