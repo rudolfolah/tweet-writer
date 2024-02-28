@@ -15,7 +15,7 @@ Licensed under the MIT license: [LICENSE](./LICENSE)
 Set up your `.env` file:
 
 ```
-OPEN_AI_API_KEY="api goes here"
+OPENAI_API_KEY="api goes here"
 SERVER_PORT=3000
 ```
 

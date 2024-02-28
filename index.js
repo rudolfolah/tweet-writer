@@ -2,11 +2,9 @@ require("dotenv").config();
 const config = require("./config");
 const express = require("express");
 const sanitizeHtml = require("sanitize-html");
-const { Configuration, OpenAIApi } = require("openai");
-const openaiConfig = new Configuration({
-  apiKey: process.env.OPEN_AI_API_KEY,
-});
-const openai = new OpenAIApi(openaiConfig);
+const {OpenAI} = require("openai");
+
+const openai = new OpenAI();
 
 /**
  * Removes all HTML tags from the input string.
@@ -28,13 +26,23 @@ function sanitizeInput(input) {
  * @returns {Promise<string|*>}
  */
 async function createCompletionTweet(prompt, input) {
-  const apiRes = await openai.createCompletion({
+  const apiRes = await openai.chat.completions.create({
     model: config.completionModel,
-    prompt: prompt + " \"" + input + "\"\n",
     max_tokens: config.completionMaxTokens,
     temperature: config.completionTemperature,
+    messages: [
+      {
+        role: "system",
+        content: config.systemPrompt,
+      },
+      {
+        role: "user",
+        content: prompt + " \"" + input + "\"\n",
+      },
+    ],
   });
-  return sanitizeInput(apiRes.data.choices[0].text);
+  console.log(apiRes.choices[0].message.content);
+  return sanitizeInput(apiRes.choices[0].message.content);
 }
 
 /**
@@ -43,13 +51,23 @@ async function createCompletionTweet(prompt, input) {
  * @returns {Promise<string[]|*>}
  */
 async function createRewriteTweets(input) {
-  const apiRes = await openai.createCompletion({
+  const apiRes = await openai.chat.completions.create({
     model: config.completionModel,
-    prompt: config.completionRewritePrompt + " \"" + input + "\"\n",
     max_tokens: config.completionMaxTokens,
     temperature: config.completionTemperature,
+    messages: [
+      {
+        role: "system",
+        content: config.systemPrompt,
+      },
+      {
+        role: "user",
+        content: config.completionRewritePrompt + " \"" + input + "\"\n",
+      },
+    ],
   });
-  return sanitizeInput(apiRes.data.choices[0].text).split("\n").filter((p) => p.length > 0).map((s) => s.slice(2));
+  console.log(apiRes.choices[0].message.content);
+  return sanitizeInput(apiRes.choices[0].message.content).split("\n").filter((p) => p.length > 0).map((s) => s.slice(2));
 }
 
 const app = express();
@@ -77,8 +95,8 @@ app.post("/generate", async (req, res) => {
       }
     }
   } catch (e) {
-    console.error("error from the api");
-    res.status(500).send({ error: e.message });
+    console.error("error from the api: " + e.message);
+    res.status(500).send({error: e.message});
     return;
   }
 
@@ -90,7 +108,7 @@ app.post("/generate", async (req, res) => {
   }
 
   console.log("sending response", results);
-  res.send({ results });
+  res.send({results});
 });
 
 // Start the app
